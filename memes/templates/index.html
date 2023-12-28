@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Search Engine</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="sbutton">
+                <button class="btn">English</button>
+                <button class="btn btn-red-sm">Sign In</button>
+        </div>
+        <div class="box">
+        </div>
+        <div class="hero">
+            <img class="banner" src="static/images/banner-2.jpeg.jpg" alt="">
+            <span class="title">Meme Search Engine</span>
+            <span>Find the memes that are just perfect for you</span>
+            <span>You always need more than just that..</span>
+<!--            <div class="hero-buttons">-->
+<!--                <input type="text" placeholder="Find what you desire..">-->
+<!--                <button class="btn btn-red">Search Buddy &gt;</button>-->
+                <form  class="input-form" method="post" action="{% url 'meme_search' %}">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-red" type="submit">Search</button>
+                </form>
+<!--            </div>-->
+        </div>
+    </div>
+
+
+    <div class="sep">
+        <h1 class="footer-text">Memes Like Never Before</h1>
+    </div>
+
+    <div class="search-result">
+            <h2>Top 5 Matching Memes</h2>
+            {% if memes %}
+                {% for meme in memes %}
+                    <div class="memediv">
+                        <p class="meme-title">{{ meme.title }}</p>
+                        <img class="meme-image" src="{{ meme.image.url }}" alt="{{ meme.title }}">
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+</body>
+
+</html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Meme Search Engine</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Meme Search Engine</h1>-->
+
+<!--    <form method="post" action="{% url 'meme_search' %}">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form }}-->
+<!--        <button type="submit">Search</button>-->
+<!--    </form>-->
+
+<!--    {% if memes %}-->
+<!--        <h2>Top 5 Matching Memes</h2>-->
+<!--        <ul>-->
+<!--            {% for meme in memes %}-->
+<!--                <li>-->
+<!--                    <p>{{ meme.title }}</p>-->
+<!--                    <img src="{{ meme.image.url }}" alt="{{ meme.title }}" style="height:350px;">-->
+
+<!--                </li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    {% endif %}-->
+<!--</body>-->
+<!--</html>-->
